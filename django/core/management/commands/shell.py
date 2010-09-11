@@ -26,7 +26,13 @@ class Command(NoArgsCommand):
             import IPython
             # Explicitly pass an empty list as arguments, because otherwise IPython
             # would use sys.argv from this script.
-            shell = IPython.Shell.IPShell(argv=[])
+            try: 
+                # Explicitly pass an empty list as arguments, because otherwise IPython 
+                # would use sys.argv from this script. 
+                shell = IPython.Shell.IPShell(argv=[]) 
+            except AttributeError: 
+                shell = IPython.InteractiveShell() 
+ 
             shell.mainloop()
         except ImportError:
             import code
